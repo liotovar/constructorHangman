@@ -39,15 +39,12 @@ function restartGame(){
 
 			selectRandomWord();
 			console.log(``);
-			console.log(`--------------------------`);
-			console.log(`HANGMAN`);
-			console.log(`--------------------------`);
 			console.log(`Hangman - Chicago Sports`);
 			console.log(``);
-			console.log(`Guess the Word:`); 
+			console.log(`Guess a letter!`); 
 			showPlayer.originalDisplay();
 			console.log(``);
-			console.log(`Guesses Remaining: ${remainingGuesses}`);
+			console.log(`${remainingGuesses} Guesses Remaining!`);
 			console.log(``);
 			guessLetters();
 		}
@@ -74,17 +71,17 @@ console.log(``);
 console.log(``);
 console.log(`Hangman - Chicago Sports`);
 console.log(``);
-console.log(`Guess the word:`); 
+console.log(`Guess a letter!`); 
 showPlayer.originalDisplay();
 console.log(``);
-console.log(`Guesses Remaining: ${remainingGuesses}`);
+console.log(`${remainingGuesses} Guesses Remaining!`);
 console.log(``);
 
 var guessLetters = function(){
 	if(remainingGuesses > 0){
 	inquirer.prompt([{
 		name: `currentGuess`,
-		message: `Guess a letter`
+		message: `Guess a letter!`
 	}]).then(function(answer){
 		var letter = answer.currentGuess.toLowerCase();
 		var letters = /^[a-z]+$/;
@@ -94,21 +91,20 @@ var guessLetters = function(){
 				console.log(`You have already guessed that letter`);
 				showPlayer.updatedDisplay(letter);
 				console.log(`Letters Guessed: ${checkLetter.lettersGuessed}`);
-				console.log(`Guesses Remaining: ${remainingGuesses}`);					
-				console.log(`--------------------------`);
+				console.log(`${remainingGuesses} Guesses Remaining!`);					
 				console.log(``);
 				guessLetters();
 			}
 			else{
 				checkLetter.lettersGuessed.push(letter);
 				if(checkLetter.currentWordArray.includes(letter)){
-					console.log(`Good guess`);
+					console.log(`Correct!!!`);
 					console.log(``);
 					showPlayer.updatedDisplay(letter);
 					
 					if(showPlayer.updated == currentWord){
 						wins++;
-						console.log(`You Win!`);
+						console.log(`You Win!!!`);
 						console.log(``);
 						console.log(`Number of wins: ${wins}`);
 						console.log(`Number of losses: ${losses}`);
@@ -117,19 +113,17 @@ var guessLetters = function(){
 					}
 					else{
 						console.log(`Letters Guessed: ${checkLetter.lettersGuessed}`);
-						console.log(`Guesses Remaining: ${remainingGuesses}`);
-						console.log(`--------------------------`);						
+						console.log(`${remainingGuesses} Guesses Remaining!`);						
 						console.log(``);
 						guessLetters();	
 					}
 				}
 				else{
-					console.log(`Guess again`);
+					console.log(`Incorrect!!!`);
 					showPlayer.updatedDisplay(letter);
 					console.log(`Letters Guessed: ${checkLetter.lettersGuessed}`);
 					remainingGuesses--;
-					console.log(`Guesses Remaining: ${remainingGuesses}`);
-					console.log(`--------------------------`);
+					console.log(`${remainingGuesses} Guesses Remaining!`);
 					console.log(``);
 					guessLetters();
 				}
